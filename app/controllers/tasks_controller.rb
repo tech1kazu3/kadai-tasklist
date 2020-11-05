@@ -1,18 +1,19 @@
 class TasksController < ApplicationController
   def index
-      @tasks =Task.all
+    @tasks =Task.all
   end
+  
   def show
-      @task =Task.find(params[:id])
+    @task =Task.find(params[:id])
   end
 
   def new
-      @task =Task.new
+    @task =Task.new
   end
 
   def create
-      @task = Task.new(task_params)
-   if @task.save
+    @task = Task.new(task_params)
+    if @task.save
       flash[:success] = "タスクが投稿されました"
       redirect_to @task
     else
@@ -37,17 +38,16 @@ class TasksController < ApplicationController
   end
 
   def destroy
-      @task = Task.find(params[:id])
-  @task.destroy
+    @task = Task.find(params[:id])
+    @task.destroy
 
-  flash[:success] = "タスクが削除されました"
-  redirect_to tasks_url
+    flash[:success] = "タスクが削除されました"
+    redirect_to tasks_url
   end
   
   private
 
-def task_params
-  params.require(:task).permit(:content)
-end
-
+  def task_params
+    params.require(:task).permit(:content)
+  end
 end
