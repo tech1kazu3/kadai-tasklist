@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  
+  before_action :set_message, only: [:show, :edit, :update, :destroy]
   def index
     @tasks =Task.all
   end
@@ -56,9 +56,4 @@ class TasksController < ApplicationController
     params.require(:task).permit(:content)
   end
   
-  def done
-    @task.update(status: "Done")
-    @tasks = Task.all.includes(:user)
-    render :index
   end
-end
