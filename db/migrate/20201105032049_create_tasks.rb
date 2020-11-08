@@ -6,4 +6,5 @@ class CreateTasks < ActiveRecord::Migration[5.2]
       t.timestamps
     end
   end
+  endrails g migration AddTitleToMessages title:string
 end
